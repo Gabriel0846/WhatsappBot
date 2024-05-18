@@ -1,4 +1,10 @@
 import openpyxl
+from urllib.parse import quote
+import webbrowser
+from time import sleep
+
+webbrowser.open('https://web.whatsapp.com/')
+sleep(30)
 
 workbook = openpyxl.load_workbook("clientes.xlsx")
 pagina_clientes = workbook["Planilha1"]
@@ -10,4 +16,7 @@ for linha in pagina_clientes.iter_rows(min_row=2):
 
     mensagem = f'Olá {nome} seu boleto vence no dia {vencimento.strftime('%d/%m/%Y')}. Por favor pagar no link: https://www.link_do_pagamento.com'
 
-    link_mensagem_whatsapp = f'https://web.whatsapp.com/send?phone={telefone}&text={mensagem}'
+    link_mensagem_whatsapp = f'https://web.whatsapp.com/send?phone={telefone}&text={quote(mensagem)}'
+    webbrowser.open(link_mensagem_whatsapp)
+
+    input()
