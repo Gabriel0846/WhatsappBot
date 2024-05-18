@@ -19,7 +19,7 @@ for linha in pagina_clientes.iter_rows(min_row=2):
 
     link_mensagem_whatsapp = f'https://web.whatsapp.com/send?phone={telefone}&text={quote(mensagem)}'
     webbrowser.open(link_mensagem_whatsapp)
-    sleep(10)
+    sleep(2)
     try:
         seta = pyautogui.locateCenterOnScreen('seta.png')
         sleep(2)
@@ -30,4 +30,4 @@ for linha in pagina_clientes.iter_rows(min_row=2):
     except:
         print(f'Não foi possivel enviar a mensagem para {nome}')
         with open('erros.csv', 'a', newline='', encoding='utf-8') as arquivo:
-            arquivo.write(f'{nome}, {telefone}')
+            arquivo.write(f'Cliente:{nome} Telefone:{telefone}\n')
